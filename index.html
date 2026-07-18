@@ -706,44 +706,120 @@ section {
 }
 
 /* ════════════════════════════════════════
-   EXPERIENCE / EDUCATION
+   EXPERIENCE  (formerly Education/Background)
    ════════════════════════════════════════ */
-.exp-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.exp-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: 16px;
+  position: relative;
+}
+
+/* Timeline connector rail */
+.exp-timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--accent), var(--cyan) 70%, transparent);
+  opacity: 0.5;
+}
 
 .exp-card {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-left: 3px solid transparent;
   padding: 26px 30px;
   transition: border-color var(--t-mid) var(--ease),
               border-left-color var(--t-mid) var(--ease),
-              transform var(--t-mid) var(--ease);
+              transform var(--t-mid) var(--ease),
+              box-shadow var(--t-mid) var(--ease);
 }
 .exp-card:hover {
   border-color: rgba(0,229,204,0.3);
   border-left-color: var(--cyan);
   transform: translateX(3px);
+  box-shadow: 0 0 32px rgba(0,229,204,0.08);
+}
+
+/* Node dot on the timeline rail — only shown when a card sits inside .exp-timeline */
+.exp-timeline .exp-card::before {
+  content: '';
+  position: absolute;
+  left: -33px; top: 30px;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 4px rgba(255,122,24,0.08);
+  transition: border-color var(--t-mid) var(--ease),
+              box-shadow var(--t-mid) var(--ease);
+}
+.exp-timeline .exp-card:hover::before {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(0,229,204,0.12);
 }
 
 .exp-header {
   display: flex; justify-content: space-between;
   align-items: flex-start; gap: 16px;
-  margin-bottom: 14px;
+  margin-bottom: 6px; flex-wrap: wrap;
+}
+.exp-header-left { flex: 1; min-width: 200px; }
+
+.exp-date-row {
+  display: flex; align-items: center; gap: 10px;
+  flex-wrap: wrap; margin-bottom: 8px;
 }
 .exp-date {
   font-family: var(--font-mono); font-size: 10px;
   color: var(--muted); letter-spacing: 0.12em;
-  text-transform: uppercase; margin-bottom: 6px;
+  text-transform: uppercase;
 }
+.status-badge {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 3px 9px;
+  border: 1px solid rgba(0,229,204,0.35);
+  color: var(--cyan);
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.status-badge.is-ongoing::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+.status-badge.is-completed {
+  color: var(--accent);
+  border-color: rgba(255,122,24,0.35);
+}
+.status-badge.is-completed::before {
+  content: '✓';
+  font-size: 10px;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.7); }
+}
+
 .exp-role {
   font-size: 17px; font-weight: 600;
   color: var(--text); margin-bottom: 4px; line-height: 1.3;
+}
+.exp-org-row {
+  display: flex; align-items: center; gap: 8px;
+  flex-wrap: wrap;
 }
 .exp-org {
   font-family: var(--font-mono); font-size: 12px;
   color: var(--cyan);
 }
-
 .exp-gpa {
   font-family: var(--font-mono); font-size: 26px;
   font-weight: 700; color: var(--accent);
@@ -754,11 +830,49 @@ section {
   color: var(--muted); letter-spacing: 0.14em;
   text-transform: uppercase; margin-top: 3px;
 }
+.exp-org-badge {
+  font-family: var(--font-mono); font-size: 9px;
+  color: var(--muted); letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  padding: 2px 7px;
+}
+.exp-org-icon {
+  width: 20px; height: 20px;
+  border-radius: 3px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(255,122,24,0.25);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent);
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+}
 
 .exp-desc {
   color: var(--muted); font-size: 14px;
-  line-height: 1.75; margin-bottom: 16px;
+  line-height: 1.75; margin: 14px 0 16px;
 }
+
+.exp-list {
+  list-style: none;
+  margin: 0 0 18px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4px 20px;
+}
+.exp-list li {
+  font-size: 13px; color: var(--muted);
+  line-height: 1.7;
+  padding-left: 14px;
+  position: relative;
+}
+.exp-list li::before {
+  content: '▹';
+  position: absolute; left: 0; top: 0;
+  color: var(--accent);
+  font-size: 11px;
+}
+.exp-card:hover .exp-list li::before { color: var(--cyan); }
+
 .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .t-tag {
   font-family: var(--font-mono); font-size: 10px;
@@ -1110,6 +1224,11 @@ footer span { color: var(--accent); }
   /* About */
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
 
+  /* Experience */
+  .exp-timeline { padding-left: 22px; }
+  .exp-timeline .exp-card::before { left: -27px; }
+  .exp-list { grid-template-columns: 1fr; }
+
   /* Contact */
   .contact-grid { grid-template-columns: 1fr; gap: 32px; }
 
@@ -1158,6 +1277,8 @@ footer span { color: var(--accent); }
   <ul class="nav-links" role="list">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Background</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#achievements">CTF</a></li>
     <li><a href="#platforms">Platforms</a></li>
@@ -1181,6 +1302,8 @@ footer span { color: var(--accent); }
   <ul role="list">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Background</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#achievements">CTF</a></li>
     <li><a href="#platforms">Platforms</a></li>
@@ -1398,7 +1521,7 @@ footer span { color: var(--accent); }
 <!-- ══════════════════════════════════════════════════
      EDUCATION & BACKGROUND  // 03
      ══════════════════════════════════════════════════ -->
-<section id="experience">
+<section id="education">
   <div class="reveal">
     <div class="section-label">03 — Education &amp; Background</div>
     <h2 class="section-title">Background</h2>
@@ -1469,11 +1592,104 @@ footer span { color: var(--accent); }
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     PROJECTS  // 04
+     EXPERIENCE  // 04
+     ══════════════════════════════════════════════════ -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">04 — Experience</div>
+    <h2 class="section-title">Experience</h2>
+    <p class="section-sub">Hands-on internships applying offensive security and AI engineering skills in real environments.</p>
+  </div>
+
+  <div class="exp-grid reveal reveal-stagger">
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-header-left">
+          <div class="exp-date-row">
+            <span class="exp-date">Jul 2026 — Aug 2026 · 8 Weeks</span>
+            <span class="status-badge is-ongoing">Ongoing</span>
+          </div>
+          <div class="exp-role">Back-End AI Engineering Intern</div>
+          <div class="exp-org-row">
+            <span class="exp-org-icon" aria-hidden="true">FR</span>
+            <span class="exp-org">FlyRank AI</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-desc">
+        Currently participating in FlyRank AI's Back-End AI Engineering Internship, building AI-powered backend applications and learning modern software engineering practices for production AI systems. The internship focuses on backend development, Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), AI agents, and scalable API development.
+      </div>
+      <ul class="exp-list">
+        <li>Developing backend services using Python</li>
+        <li>Building REST APIs</li>
+        <li>Implementing Retrieval-Augmented Generation (RAG)</li>
+        <li>Integrating Large Language Models</li>
+        <li>Working with AI Agents</li>
+        <li>Prompt Engineering</li>
+        <li>Git collaboration</li>
+        <li>Writing modular production-ready backend code</li>
+      </ul>
+      <div class="timeline-tags">
+        <span class="t-tag">Python</span>
+        <span class="t-tag">FastAPI</span>
+        <span class="t-tag">REST API</span>
+        <span class="t-tag">RAG</span>
+        <span class="t-tag">LLMs</span>
+        <span class="t-tag">AI Agents</span>
+        <span class="t-tag">Prompt Engineering</span>
+        <span class="t-tag">Git</span>
+        <span class="t-tag">JSON</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-header-left">
+          <div class="exp-date-row">
+            <span class="exp-date">May 2026 — Jun 2026 · 1 Month</span>
+            <span class="status-badge is-completed">Completed</span>
+          </div>
+          <div class="exp-role">Cybersecurity Intern</div>
+          <div class="exp-org-row">
+            <span class="exp-org-icon" aria-hidden="true">ES</span>
+            <span class="exp-org">ElevanceSkills</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-desc">
+        Successfully completed a one-month Cybersecurity Internship focused on offensive security, vulnerability research, and real-world security assessments.
+      </div>
+      <ul class="exp-list">
+        <li>Designed a TryHackMe-style cybersecurity lab</li>
+        <li>Performed OWASP-based web application security assessments</li>
+        <li>Researched vulnerabilities from Bugcrowd, HackerOne and YesWeHack</li>
+        <li>Solved and documented an Insane Hack The Box machine</li>
+        <li>Authored technical vulnerability reports</li>
+        <li>Improved reconnaissance, enumeration, exploitation and reporting skills</li>
+      </ul>
+      <div class="timeline-tags">
+        <span class="t-tag">Python</span>
+        <span class="t-tag">Burp Suite</span>
+        <span class="t-tag">Nmap</span>
+        <span class="t-tag">OWASP Top 10</span>
+        <span class="t-tag">Wireshark</span>
+        <span class="t-tag">Linux</span>
+        <span class="t-tag">Hack The Box</span>
+        <span class="t-tag">Bug Bounty</span>
+        <span class="t-tag">Web Security</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     PROJECTS  // 05
      ══════════════════════════════════════════════════ -->
 <section id="projects">
   <div class="reveal">
-    <div class="section-label">04 — Projects</div>
+    <div class="section-label">05 — Projects</div>
     <h2 class="section-title">Built Things</h2>
     <p class="section-sub">Security tools, embedded systems, and assistive technology — applied engineering.</p>
   </div>
@@ -1534,7 +1750,7 @@ footer span { color: var(--accent); }
      ══════════════════════════════════════════════════ -->
 <section id="achievements">
   <div class="reveal">
-    <div class="section-label">05 — CTF &amp; Achievements</div>
+    <div class="section-label">06 — CTF &amp; Achievements</div>
     <h2 class="section-title">Flags Captured</h2>
     <p class="section-sub">Competitive cybersecurity results that prove the skills are real.</p>
   </div>
@@ -1566,7 +1782,7 @@ footer span { color: var(--accent); }
      ══════════════════════════════════════════════════ -->
 <section id="platforms">
   <div class="reveal">
-    <div class="section-label">06 — Platforms</div>
+    <div class="section-label">07 — Platforms</div>
     <h2 class="section-title">Where I Train</h2>
     <p class="section-sub">Active profiles across the major cybersecurity platforms.</p>
   </div>
@@ -1613,7 +1829,7 @@ footer span { color: var(--accent); }
      ══════════════════════════════════════════════════ -->
 <section id="blogs">
   <div class="reveal">
-    <div class="section-label">07 — Writeups &amp; Research</div>
+    <div class="section-label">08 — Writeups &amp; Research</div>
     <h2 class="section-title">Written Work</h2>
     <p class="section-sub">CTF writeups, vulnerability research, and security notes published on Medium.</p>
   </div>
@@ -1630,7 +1846,7 @@ footer span { color: var(--accent); }
      ══════════════════════════════════════════════════ -->
 <section id="contact">
   <div class="reveal">
-    <div class="section-label">08 — Contact</div>
+    <div class="section-label">09 — Contact</div>
     <h2 class="section-title">Get In Touch</h2>
     <p class="section-sub">Open to internships, research collaborations, CTF teams, and conversations about offensive security.</p>
   </div>
@@ -1730,7 +1946,7 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   document.addEventListener('mousemove', moveCursor, { passive: true });
   animateCursor();
 
-  document.querySelectorAll('a, button, .platform-card, .skill-card, .project-card, .achievement-card, .stat-item').forEach(el => {
+  document.querySelectorAll('a, button, .platform-card, .skill-card, .project-card, .achievement-card, .stat-item, .exp-card').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
