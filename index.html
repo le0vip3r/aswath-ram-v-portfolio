@@ -1402,7 +1402,7 @@ footer span { color: var(--accent); }
       <div class="stat-label">Teams Competed Against</div>
     </div>
     <div class="stat-item" role="listitem">
-      <span class="stat-num">3+</span>
+      <span class="stat-num">5</span>
       <div class="stat-label">Projects</div>
     </div>
     <div class="stat-item" role="listitem">
@@ -1608,7 +1608,7 @@ footer span { color: var(--accent); }
         <div class="exp-header-left">
           <div class="exp-date-row">
             <span class="exp-date">Jul 2026 — Aug 2026 · 8 Weeks</span>
-            <span class="status-badge is-ongoing">Ongoing</span>
+            <span class="status-badge is-completed">Completed</span>
           </div>
           <div class="exp-role">Back-End AI Engineering Intern</div>
           <div class="exp-org-row">
@@ -1618,7 +1618,7 @@ footer span { color: var(--accent); }
         </div>
       </div>
       <div class="exp-desc">
-        Currently participating in FlyRank AI's Back-End AI Engineering Internship, building AI-powered backend applications and learning modern software engineering practices for production AI systems. The internship focuses on backend development, Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), AI agents, and scalable API development.
+        Completed FlyRank AI's Back-End AI Engineering Internship, gaining hands-on experience with AI-powered backend workflows, API design, task design and prompting, Retrieval-Augmented Generation (RAG), grounding, and evaluation practices.
       </div>
       <ul class="exp-list">
         <li>Developing backend services using Python</li>
@@ -1697,6 +1697,26 @@ footer span { color: var(--accent); }
   <div class="projects-grid reveal reveal-stagger">
     <article class="project-card">
       <div class="project-num">01 // Security</div>
+      <h3 class="project-name">SSH Honeypot SOC</h3>
+      <p class="project-desc">
+        Python-based SSH honeypot and SOC monitoring dashboard that captures login attempts, monitors attacker interactions, detects repeated failed logins, and generates automated security alerts. Built with Cowrie, Docker, and Flask to demonstrate threat monitoring and incident detection in a controlled lab environment.
+      </p>
+      <div class="project-relevance">⚡ Threat Monitoring · Intrusion Detection · Blue Team</div>
+      <div class="project-stack">
+        <span class="p-tag">Python</span>
+        <span class="p-tag">Cowrie</span>
+        <span class="p-tag">Docker</span>
+        <span class="p-tag">Flask</span>
+        <span class="p-tag">SSH Security</span>
+        <span class="p-tag">Log Analysis</span>
+        <span class="p-tag">Brute-Force Detection</span>
+        <span class="p-tag">SOC Dashboard</span>
+      </div>
+      <p><a href="https://github.com/le0vip3r/ssh-honeypot-soc" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></p>
+    </article>
+
+    <article class="project-card">
+      <div class="project-num">02 // Security</div>
       <h3 class="project-name">Log Analyzer</h3>
       <p class="project-desc">
         Python-based security log analyzer that automates authentication log processing, detects brute-force attack attempts in real time, and generates structured security reports for threat monitoring and incident response.
@@ -1709,11 +1729,47 @@ footer span { color: var(--accent); }
         <span class="p-tag">Security Reports</span>
         <span class="p-tag">Brute-Force Detection</span>
       </div>
+      <p><a href="https://github.com/le0vip3r/Log-Analyzer-Python" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></p>
     </article>
 
     <article class="project-card">
-      <div class="project-num">02 // Hardware</div>
-      <h3 class="project-name">Vision Aid</h3>
+      <div class="project-num">03 // Application Security</div>
+      <h3 class="project-name">Operation Blindspot</h3>
+      <p class="project-desc">
+        Developed a Docker-based vulnerable web application lab to simulate and practice Blind SQL Injection attacks using Burp Suite and SQLMap. Built to explore SQL injection techniques and understand web application security testing in an isolated environment.
+      </p>
+      <div class="project-relevance">⚡ Web Security · Penetration Testing · Vulnerability Analysis</div>
+      <div class="project-stack">
+        <span class="p-tag">Docker</span>
+        <span class="p-tag">Blind SQL Injection</span>
+        <span class="p-tag">Burp Suite</span>
+        <span class="p-tag">SQLMap</span>
+        <span class="p-tag">Web Security</span>
+        <span class="p-tag">Penetration Testing</span>
+      </div>
+      <p><a href="https://github.com/le0vip3r/operation-blindspot" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></p>
+    </article>
+
+    <article class="project-card">
+      <div class="project-num">04 // Application Security</div>
+      <h3 class="project-name">Web Security API</h3>
+      <p class="project-desc">
+        A lightweight REST API built with Node.js and Express.js that provides structured educational information about common web security vulnerabilities, including SQL injection, OWASP classification, severity, and prevention techniques. Features JSON-based responses through dedicated endpoints and supports testing with browsers and curl.
+      </p>
+      <div class="project-relevance">⚡ API DEVELOPMENT · WEB SECURITY · OWASP</div>
+      <div class="project-stack">
+        <span class="p-tag">Node.js</span>
+        <span class="p-tag">Express.js</span>
+        <span class="p-tag">REST API</span>
+        <span class="p-tag">Web Security</span>
+        <span class="p-tag">OWASP</span>
+      </div>
+      <p><a href="https://github.com/le0vip3r/web-security-api" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></p>
+    </article>
+
+    <article class="project-card">
+      <div class="project-num">05 // Hardware</div>
+      <h3 class="project-name">VisionAid</h3>
       <p class="project-desc">
         Assistive device for visually impaired individuals — Arduino Uno + ultrasonic sensor + buzzer mounted on spectacles. Detects obstacles and provides real-time haptic/audio feedback, enabling safer independent navigation.
       </p>
@@ -1728,7 +1784,7 @@ footer span { color: var(--accent); }
     </article>
 
     <article class="project-card">
-      <div class="project-num">03 // Hardware</div>
+      <div class="project-num">06 // Hardware</div>
       <h3 class="project-name">Multi-Sensor Alert System</h3>
       <p class="project-desc">
         Arduino-centric emergency response device with gas and fire sensors that detects hazardous conditions and automatically calls the user via GSM module — no internet required. Designed for reliability in areas with poor connectivity.
